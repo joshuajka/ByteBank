@@ -14,7 +14,7 @@ namespace ByteBank
         
         public Cliente Cliente { 
             get => _cliente; 
-            set=> _cliente = value; 
+            set => _cliente = value; 
         }
 
         public int NumeroAgencia { get; set; }

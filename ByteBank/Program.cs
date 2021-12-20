@@ -1,4 +1,5 @@
 ﻿using ByteBank.Funcionarios;
+using ByteBank.Sistemas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,74 +12,52 @@ namespace ByteBank
     {
         static void Main(string[] args)
         {
-            ContaCorrente conta = new ContaCorrente();
-            ContaCorrente c2 = new ContaCorrente();
-            //Cliente cl1 = new Cliente();
-            //Cliente cl2 = new Cliente();
-            //cl1.Nome = "Joao";
-            //cl2.Nome = "Maria";
+            //Console.ReadLine();
 
-            conta.Cliente.Nome = "Joao";
-            conta.NumeroAgencia = 863;
-            conta.NumeroConta = 863452;
+            //CalcularBonificacao();
 
-            c2.Cliente.Nome = "Maria";
-            c2.NumeroAgencia = 864;
-            c2.NumeroConta = 863453;
-            //conta.Saldo = 1000.00;
-
-            Funcionario carlos = new Funcionario();
-            carlos.Nome = "Carlos";
-            carlos.Salario = 1000.00;
-            carlos.CPF = "299.568.896-10";
-
-            Diretor roberta = new Diretor();
-            roberta.Nome = "Roberta";
-            roberta.Salario = 5000.00;
-            roberta.CPF = "xxx.xxx.xxx-xx";
-
-            GerenciadorBonificacao gr = new GerenciadorBonificacao();
-            gr.Registrar(carlos);
-            gr.Registrar(roberta); 
-
-
-            Console.WriteLine($"Bonificão do {carlos.Nome} é de {carlos.GetBonificacao()}");
-
-            Console.WriteLine($"Resumo da Diretora Nome: {roberta.Nome} Bonificacao: {roberta.GetBonificacao()} Salario: {roberta.Salario}");
-
-            Console.WriteLine($"Total de bonificacão é de {gr.GetTotalBonificacao()}");
-
-            Console.WriteLine($"Titular da conta corrente: {conta.Cliente.Nome}");
-            Console.WriteLine($"Número da agência: {conta.NumeroAgencia}");
-            Console.WriteLine($"Número da conta corrente: {conta.NumeroConta}");
-            Console.WriteLine($"Saldo da conta corrente: {conta.Saldo}");
-
-            if (conta.Sacar(59.25))
-            {
-                Console.WriteLine($"Saldo da conta corrente após o saque: {conta.Saldo}");
-            }
-            else
-            {
-                Console.WriteLine("Saldo insuficiente para saque");
-            }
-
-            if(c2.Transferir(102, conta))
-            {
-                Console.WriteLine($"Saldo da conta corrente após depósito: {conta.Saldo}");
-            }
-            else
-            {
-                Console.WriteLine("Saldo insuficiente para transferencia");
-            }
-            
-
-            Console.WriteLine($"Saldo da conta de {c2.Cliente.Nome} é de R$ {c2.Saldo}");
-
+            SistemaInterno();
 
             Console.ReadLine();
 
-
-            
         }
+
+        public static void CalcularBonificacao()
+        {
+            GerenciadorBonificacao gerenciadorBonificacao = new GerenciadorBonificacao();
+
+            Designer d = new Designer("888.888.888-88");
+            d.Nome = "Pedro";
+
+            Diretor d1 = new Diretor(5000, "999.999.999-99");
+            d1.Nome = "Roberta";
+
+            Auxiliar au = new Auxiliar("111.111.111-11");
+            au.Nome = "Estagiario";
+
+            GerenteDeConta gc = new GerenteDeConta("222.222.222-22");
+            gc.Nome = "Camila";
+
+            Desenvolvedor dev = new Desenvolvedor("XXX.XXX.XXX-XX");
+
+            gerenciadorBonificacao.Registrar(dev);
+            gerenciadorBonificacao.Registrar(d);
+            gerenciadorBonificacao.Registrar(d1);
+            gerenciadorBonificacao.Registrar(au);
+            gerenciadorBonificacao.Registrar(gc);
+
+            Console.WriteLine("Total de bonificações do mês " + gerenciadorBonificacao.GetTotalBonificacao());
+
+        }
+
+        public static void SistemaInterno()
+        {
+            SistemaInterno si = new SistemaInterno();
+            Diretor d1 = new Diretor(5000, "999.999.999-99");
+            d1.Nome = "Roberta";
+            d1.DefinirSenha("123");
+            si.Logar(d1, "13");
+        }
+
     }
 }

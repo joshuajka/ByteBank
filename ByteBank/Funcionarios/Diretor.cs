@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ByteBank.Sistemas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,20 @@ using System.Threading.Tasks;
 
 namespace ByteBank.Funcionarios
 {
-    class Diretor : Funcionario
+    class Diretor : FuncionarioAutenticavel
     {
-        override
-        public double GetBonificacao()
+        public Diretor(double salario,string cpf) : base(salario,cpf)
         {
-            return Salario;
+              
+        }
+        public override double GetBonificacao()
+        {       
+           return Salario * 0.5;
         }
 
+        public override void AumentarSalario()
+        {
+            Salario = Salario * 1.2;
+        }
     }
 }
