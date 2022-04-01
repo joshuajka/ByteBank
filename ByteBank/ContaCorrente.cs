@@ -8,6 +8,28 @@ namespace ByteBank
 {
     public class ContaCorrente
     {
+        public static int TotalDeContasCriadas { get; private set; }
+
+        public static double TaxaOperacao  { get; private set; }
+
+        public ContaCorrente(int agencia, int numero)
+        {
+            NumeroAgencia = agencia;
+            NumeroConta = numero;
+
+            try
+            {
+                TaxaOperacao = 30 / TotalDeContasCriadas;
+                TotalDeContasCriadas++;
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("Não é possível fazer uma divisão por zero");
+            }
+
+
+        }
+
         private double _saldo = 100.5;
         //private Cliente _cliente;
         private Cliente _cliente = new Cliente();
