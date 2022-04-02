@@ -17,11 +17,19 @@ namespace ByteBank
             //CalcularBonificacao();
 
             //SistemaInterno();
+            try
+            {
+                ContaCorrente conta = new ContaCorrente(0, 0);
+                Console.WriteLine(ContaCorrente.TotalDeContasCriadas);
+                Console.ReadLine();
+            }
+            catch(ArgumentException e)
+            {
+                //Console.WriteLine(e.ParamName);
+                Console.WriteLine(e.Message);
+                Console.ReadLine();
+            }
 
-            ContaCorrente conta = new ContaCorrente(7480, 874150);
-            Console.WriteLine(ContaCorrente.TotalDeContasCriadas);
-
-            Console.ReadLine();
 
         }
 
